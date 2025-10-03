@@ -1,15 +1,12 @@
-#
-# Build stage
-#
-FROM maven:3.8.3-openjdk-17 AS build
-COPY . .
-RUN mvn clean install
-
-#
-# Package stage
-#
 FROM eclipse-temurin:21-jdk
-COPY --from=build /target/coffee-shop-telegram-bot-0.0.1-SNAPSHOT.jar demo.jar
-# ENV PORT=8080
+WORKDIR /app
+COPY target/*.jar app.jar
+
+# Optional defaults
+ENV PORT=8080
+ENV DATABASE_URL=jdbc:mysql://db:3306/roth
+ENV DB_USER=root
+ENV DB_PASSWORD=
+
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","demo.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]

@@ -1,6 +1,6 @@
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
-COPY target/*.jar app.jar
+COPY build/libs/*.jar app.jar
 
 # Optional defaults
 ENV PORT=8080

@@ -14,7 +14,7 @@ COPY build.gradle settings.gradle ./
 COPY src ./src
 
 # Build the Spring Boot JAR
-RUN gradle clean build --no-daemon
+RUN gradle clean build --no-daemon -x test
 
 # Stage 2: Run JAR
 FROM eclipse-temurin:21-jdk

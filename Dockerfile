@@ -8,7 +8,7 @@ RUN gradle clean build --no-daemon
 # Stage 2: Run JAR
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
-COPY --from=build /app/build/libs/*.jar app.jar
+COPY --from=build /coffee-shop-telegram-bot/build/libs/*.jar app.jar
 
 ENV PORT=8080
 ENV DATABASE_URL=jdbc:mysql://localhost:3306/roth
